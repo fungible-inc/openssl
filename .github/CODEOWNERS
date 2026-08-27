@@ -1,1 +1,4 @@
 /.github/workflows/ @quarckster
+
+# Owners who need to approve all rel_8_1 changes
+* @fungible-inc/dc8-release-managers
