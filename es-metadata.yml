@@ -1,0 +1,12 @@
+schemaVersion: 1.0.0
+providers:
+  - provider: InventoryAsCode
+    version: 1.0.0
+    metadata:
+      isProduction: false
+      accountableOwners:
+        service: e6f5c448-63cd-43e6-93fd-091dfd9c393b
+      routing:
+        defaultAreaPath:
+          org: azurecsi
+          path: Fungible\Software
