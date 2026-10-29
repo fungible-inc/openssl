@@ -9,6 +9,11 @@
 use strict;
 use warnings;
 
+my $no_generation_stamp = 0;
+if (@ARGV && $ARGV[0] =~ /^--no-generation-stamp(?:=(.*))?$/) {
+    $no_generation_stamp = !defined($1) || $1 eq '1';
+    shift @ARGV;
+}
 my $platform = pop @ARGV;
 my $cflags = join(' ', @ARGV);
 $cflags =~ s(\\)(\\\\)g;
@@ -16,7 +21,7 @@ $cflags = "compiler: $cflags";
 
 # Use the value of the envvar SOURCE_DATE_EPOCH, even if it's
 # zero or the empty string.
-my $date = ($ENV{'BUILDXL_PAYLOAD_BUILD'} // '') eq '1'
+my $date = $no_generation_stamp
     ? 'date not recorded'
     : gmtime($ENV{'SOURCE_DATE_EPOCH'} // time()) . " UTC";
 
