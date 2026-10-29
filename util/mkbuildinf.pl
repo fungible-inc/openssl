@@ -16,7 +16,9 @@ $cflags = "compiler: $cflags";
 
 # Use the value of the envvar SOURCE_DATE_EPOCH, even if it's
 # zero or the empty string.
-my $date = gmtime($ENV{'SOURCE_DATE_EPOCH'} // time()) . " UTC";
+my $date = ($ENV{'BUILDXL_PAYLOAD_BUILD'} // '') eq '1'
+    ? 'date not recorded'
+    : gmtime($ENV{'SOURCE_DATE_EPOCH'} // time()) . " UTC";
 
 print <<"END_OUTPUT";
 /*
